@@ -1,0 +1,23 @@
+/* purgecss start ignore */
+@tailwind base;
+/* purgecss end ignore */
+
+@tailwind components;
+@tailwind utilities;
+
+/*Write your custom Css Here*/
+html,
+body {
+  background-color: #15202b;
+  color: white;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.main__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.main__scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
