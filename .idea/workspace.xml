@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4a3124d4-a345-4163-8b09-edf109f06ae2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\CALEB RUSSEL\Desktop\NextJsProject\twitter-clone\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hXyJkafKUDPJe0NmX6EKVYex1v" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\CALEB RUSSEL\AppData\Roaming\npm\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\CALEB RUSSEL\Desktop\NextJsProject\twitter-clone\src\utils" />
+      <recent name="C:\Users\CALEB RUSSEL\Desktop\NextJsProject\twitter-clone\src" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4a3124d4-a345-4163-8b09-edf109f06ae2" name="Default Changelist" comment="" />
+      <created>1600171661444</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600171661444</updated>
+      <workItem from="1600171665883" duration="1325000" />
+      <workItem from="1600173257248" duration="9656000" />
+      <workItem from="1600271264661" duration="18041000" />
+      <workItem from="1600334853871" duration="9390000" />
+      <workItem from="1600423151286" duration="24851000" />
+      <workItem from="1600518824039" duration="12707000" />
+      <workItem from="1601634490532" duration="7364000" />
+      <workItem from="1601889636003" duration="924000" />
+      <workItem from="1601893868009" duration="18274000" />
+      <workItem from="1601918072150" duration="10561000" />
+      <workItem from="1601929453375" duration="760000" />
+      <workItem from="1601930292639" duration="2238000" />
+      <workItem from="1601980195954" duration="616000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2065" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601926706787">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2065" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601926706787" />
+    <state width="1897" height="281" key="GridCell.Tab.0.bottom" timestamp="1601929973502">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601929973502" />
+    <state width="1897" height="281" key="GridCell.Tab.0.center" timestamp="1601929973501">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601929973501" />
+    <state width="1897" height="281" key="GridCell.Tab.0.left" timestamp="1601929973501">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601929973501" />
+    <state width="1897" height="281" key="GridCell.Tab.0.right" timestamp="1601929973502">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601929973502" />
+    <state x="1826" y="161" key="SettingsEditor" timestamp="1601930253341">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1826" y="161" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1601930253341" />
+    <state x="1989" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600432612257">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1989" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1600432612257" />
+  </component>
+</project>
