@@ -2,14 +2,35 @@ import React, { useEffect } from "react";
 import AddPost from "../components/Posts/AddPost/AddPost";
 import Posts from "../components/Posts/Posts";
 import Layout from "../components/hoc/Layout";
-import { getSession, useSession } from "next-auth/client";
+import { signin, useSession } from "next-auth/client";
 import axios from "axios";
-import Router from "next/router";
 import { axiosInstance } from "../utils/axiosInstance";
 
 export default function Accueil(props) {
   const [session, loading] = useSession();
 
+  // When rendering client side don't display anything until loading is complete
+  if (typeof window !== "undefined" && loading) return null;
+
+  // If no session exists, display access denied message
+  if (!session) {
+    return (
+      <div className="lg:fixed lg:top-1/3 lg:left-1/3 mt-24">
+        <div className="p-3 max-w-lg flex-col flex mx-auto justify-end">
+          <p className="text-3xl font-bold text-center">
+            Désolé vous n'êtes pas connecté et vous n'avez pas droit à ce
+            contenu !
+          </p>
+          <button
+            onClick={signin}
+            className="p-2 rounded-md text-lg bg-secondary-200 text-secondary-700 font-light mt-2 w-full focus:outline-none hover:bg-secondary-700 hover:text-white"
+          >
+            Se connecter
+          </button>
+        </div>
+      </div>
+    );
+  }
   return (
     <Layout>
       <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 fixed top-0 w-7/2 lg:w-1/3 p-4">
@@ -31,17 +52,3 @@ export default function Accueil(props) {
     </Layout>
   );
 }
-
-// export async function getServerSideProps(ctx) {
-//   const session = await getSession(ctx);
-//   if (session) {
-//     const response = await axiosInstance(ctx).get("/api/user");
-//     console.log(response.data);
-//   }
-//
-//   return {
-//     props: {
-//       session,
-//     },
-//   };
-// }

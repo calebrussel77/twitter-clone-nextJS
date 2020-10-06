@@ -81,14 +81,12 @@ const options = {
               });
               createUser.save().then((newUser) => {
                 user._id = newUser._id;
-                console.log({ newUser });
                 return Promise.resolve(true);
               });
             } else {
               //logging
               user.id = data._id;
               profile.id = data._id;
-              console.log({ data });
               return Promise.resolve(true);
             }
           })
@@ -98,8 +96,8 @@ const options = {
       }
     },
     redirect: async (url, baseUrl) => {
-      console.log(url);
-      return Promise.resolve(baseUrl + "/accueil");
+      // console.log(url);
+      return Promise.resolve(baseUrl);
     },
     session: async (session, user) => {
       return Promise.resolve(session);

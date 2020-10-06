@@ -1,11 +1,12 @@
 import React from "react";
 import { signout, useSession } from "next-auth/client";
-import { Transition } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import { useState } from "react";
 
 const Footer = (props) => {
   const [session, loading] = useSession();
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <footer className="mdl:w-1/4 lg:w-1/3 mdl:static footer p-4 md:justify-start border-t md:border-t-0 md:space-y-8 border-gray-700 md:flex-col flex flex-row items-center justify-between md:fixed md:left-0 md:bottom-0 md:bg-primary-700 md:top-0 md:border-r md:border-gray-700">
@@ -80,7 +81,7 @@ const Footer = (props) => {
           <path d="M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z" />
         </svg>
 
-        <button className="md:static fixed rounded-full fixed bottom-0 right-0 mr-4 mb-20 h-16 w-16 bg-secondary-700 text-white flex items-center justify-center">
+        <button className="md:static fixed rounded-full bottom-0 right-0 mr-4 mb-20 h-16 w-16 bg-secondary-700 text-white flex items-center justify-center">
           <svg
             viewBox="0 0 24 24"
             className="fill-current stroke-current text-white h-6 w-6"
@@ -88,42 +89,125 @@ const Footer = (props) => {
             <path d="M8.8 7.2H5.6V3.9c0-.4-.3-.8-.8-.8s-.7.4-.7.8v3.3H.8c-.4 0-.8.3-.8.8s.3.8.8.8h3.3v3.3c0 .4.3.8.8.8s.8-.3.8-.8V8.7H9c.4 0 .8-.3.8-.8s-.5-.7-1-.7zm15-4.9v-.1h-.1c-.1 0-9.2 1.2-14.4 11.7-3.8 7.6-3.6 9.9-3.3 9.9.3.1 3.4-6.5 6.7-9.2 5.2-1.1 6.6-3.6 6.6-3.6s-1.5.2-2.1.2c-.8 0-1.4-.2-1.7-.3 1.3-1.2 2.4-1.5 3.5-1.7.9-.2 1.8-.4 3-1.2 2.2-1.6 1.9-5.5 1.8-5.7z" />
           </svg>
         </button>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="focus:outline-none flex-row space-x-3 items-center lg:block hidden p-4 bg-brand-700 rounded-md hover:bg-secondary-200 relative"
-          style={{ display: "flex", marginTop: "auto" }}
-        >
-          <img
-            src={session?.user.image}
-            alt={session?.user.name}
-            className="h-12 w-12 rounded-full border border-gray-700 block"
-          />
-          <div className="flex flex-col space-y-1 items-baseline">
-            <p className="font-bold">{session?.user.name}</p>
-            <p className="text-gray-200 text-xs ">{session?.user.email}</p>
-          </div>
-          <Transition
-            show={isOpen}
-            enter="transition-opacity duration-75"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-150"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+        <Menu>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="hidden focus:outline-none mdl:flex flex-row space-x-3 items-center p-4 bg-brand-700 rounded-md hover:bg-secondary-200 relative"
+            style={{ marginTop: "auto" }}
           >
-            <div className="focus:outline-none absolute shadow-xl rounded-md py-6 w-64 bg-primary-700 top-0 right-0 -mt-24 -mr-20 border border-gray-700">
-              <span
-                onClick={signout}
-                className="inline-block w-full hover:bg-secondary-700 py-2 pl-4 text-left font-bold"
-              >
-                Se déconnecter
-              </span>
+            <img
+              src={session?.user.image}
+              alt={session?.user.name}
+              className="h-12 w-12 rounded-full border border-gray-700 block"
+            />
+            <div className="hidden lg:flex flex-col items-baseline">
+              <p className="font-bold">{session?.user.name}</p>
+              <p className="text-gray-600 text-xs">{session?.user.email}</p>
             </div>
-          </Transition>
-        </button>
+            <svg
+              className="w-5 h-5 ml-2 -mr-1 hidden mdl:inline-block"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <Transition
+              show={isOpen}
+              enter="transition-opacity duration-75"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity duration-150"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Menu.Items
+                static
+                className="focus:outline-none absolute shadow-xl rounded-md divide-y divide-gray-100 outline-none bg-primary-700 top-0 right-0 -mt-56 -mr-24 border border-gray-700"
+              >
+                <div className="px-4 py-3 flex flex-row space-x-3 items-center">
+                  <img
+                    src={session?.user.image}
+                    alt={session?.user.name}
+                    className="h-8 w-8 rounded-full border border-gray-700 block"
+                  />
+                  <div className="flex flex-col items-baseline">
+                    <p className="font-bold">{session?.user.name}</p>
+                    <p className="text-gray-600 text-xs">
+                      {session?.user.email}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#account-settings"
+                        className={`${
+                          active ? "bg-gray-800 text-gray-500" : "text-gray-700"
+                        } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                      >
+                        Paramètre du compte
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#new-account"
+                        className={`${
+                          active ? "bg-gray-800 text-gray-500" : "text-gray-700"
+                        } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                      >
+                        Ajouter un compte existant
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item
+                    as="span"
+                    disabled
+                    className="flex justify-between w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50"
+                  >
+                    Signaler (soon)
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#license"
+                        className={`${
+                          active ? "bg-gray-800 text-gray-500" : "text-gray-700"
+                        } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                      >
+                        License
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
+
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        onClick={signout}
+                        className={`${
+                          active ? "bg-gray-800" : "text-secondary-700"
+                        } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                      >
+                        Se déconnecter
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </button>
+        </Menu>
       </footer>
     </>
   );
 };
-
 export default Footer;
