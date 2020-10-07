@@ -20,7 +20,7 @@ export default function Home() {
         {!session && (
           <>
             Not signed in <br />
-            <button onClick={signin}>Sign in</button>
+            <button onClick={() => signin("google")}>Sign in</button>
           </>
         )}
         {session && (

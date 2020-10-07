@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+
+delete mongoose.connection.models["Post"];
+
 const { ObjectId } = mongoose.Schema;
 
 const postSchema = new mongoose.Schema(
@@ -30,18 +33,26 @@ const postSchema = new mongoose.Schema(
 
 /* Kind of like a middleware function after creating our schema (since we have access to next) */
 /* Must be a function declaration (not an arrow function), because we want to use 'this' to reference our schema */
-const autoPopulatePostedBy = function (next) {
-  this.populate("postedBy", "_id name avatar");
-  this.populate("comments.postedBy", "_id name avatar");
-  next();
-};
+// const autoPopulatePostedBy = function (next) {
+//   this.populate("postedBy", "_id name image");
+//   this.populate("comments.postedBy", "_id name image");
+//   next();
+// };
 
 /* We're going to need to populate the 'postedBy' field virtually every time we do a findOne / find query, so we'll just do it as a pre hook here upon creating the schema */
-postSchema
-  .pre("findOne", autoPopulatePostedBy)
-  .pre("find", autoPopulatePostedBy);
+postSchema.pre("find", function (next) {
+  this.populate("postedBy", "_id name image");
+  this.populate("comments.postedBy", "_id name image");
+  next();
+});
 
-/* Create index on keys for more performant querying/post sorting */
+postSchema.pre("findOne", function (next) {
+  this.populate("postedBy", "_id name image");
+  this.populate("comments.postedBy", "_id name image");
+  next();
+});
+
+// /* Create index on keys for more performant querying/post sorting */
 postSchema.index({ postedBy: 1, createdAt: 1 });
 
 export default mongoose.models.Post || mongoose.model("Post", postSchema);
