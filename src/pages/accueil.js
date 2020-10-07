@@ -46,8 +46,9 @@ export default function Accueil(props) {
           </svg>
         </div>
       </div>
+      <div className="mt-20 md:hidden" />
       <AddPost />
-      <div className="h-3 w-full bg-gray-800 mt-16 md:mt-0" />
+      <div className="h-3 w-full bg-gray-800 " />
       <Posts />
       <div className="h-2 w-full bg-gray-800 mb-12 md:mb-0 md:h-0" />
     </Layout>

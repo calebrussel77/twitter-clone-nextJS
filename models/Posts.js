@@ -8,7 +8,6 @@ const postSchema = new mongoose.Schema(
   {
     text: {
       type: String,
-      required: "Post content is required",
     },
     image: {
       type: String,
