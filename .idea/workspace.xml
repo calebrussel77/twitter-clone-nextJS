@@ -2,12 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a3124d4-a345-4163-8b09-edf109f06ae2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/twitter-clone.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Posts/AddPost/AddPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/AddPost/AddPost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Posts/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Post/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hoc/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hoc/Footer/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hoc/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hoc/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hoc/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hoc/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/tailwind.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/accueil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/auth/[...nextauth].js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/users/feed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/users/feed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/axiosInstance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/axiosInstance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/checkAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/checkAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +87,9 @@
       <workItem from="1601929453375" duration="760000" />
       <workItem from="1601930292639" duration="2238000" />
       <workItem from="1601980195954" duration="1335000" />
+      <workItem from="1602779304702" duration="124000" />
+      <workItem from="1603287051011" duration="548000" />
+      <workItem from="1603303196029" duration="9000" />
     </task>
     <servers />
   </component>

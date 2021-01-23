@@ -1,36 +1,30 @@
-import React, { useEffect } from "react";
 import AddPost from "../components/Posts/AddPost/AddPost";
-import Posts from "../components/Posts/Posts";
+import Post from "../components/Posts/Post/Post";
 import Layout from "../components/hoc/Layout";
-import { signin, useSession } from "next-auth/client";
-import axios from "axios";
-import { axiosInstance } from "../utils/axiosInstance";
+import useSWR from "swr";
+// import { useRouter } from "next/router";
 
-export default function Accueil(props) {
-  const [session, loading] = useSession();
+function Accueil() {
+  const { data: posts, error } = useSWR(`/api/posts`);
 
-  // When rendering client side don't display anything until loading is complete
-  if (typeof window !== "undefined" && loading) return null;
-
-  // If no session exists, display access denied message
-  if (!session) {
-    return (
-      <div className="lg:fixed lg:top-1/3 lg:left-1/3 mt-24">
-        <div className="p-3 max-w-lg flex-col flex mx-auto justify-end">
-          <p className="text-3xl font-bold text-center">
-            Désolé vous n'êtes pas connecté et vous n'avez pas droit à ce
-            contenu !
-          </p>
-          <button
-            onClick={signin}
-            className="p-2 rounded-md text-lg bg-secondary-200 text-secondary-700 font-light mt-2 w-full focus:outline-none hover:bg-secondary-700 hover:text-white"
-          >
-            Se connecter
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // const handleLikes = (postId) => {
+  //   mutate(
+  //     "/api/posts/like",
+  //     {
+  //       ...post,
+  //       likes: post.likes?.filter((b) => b !== userId),
+  //     },
+  //     false
+  //   );
+  //   axiosInstancePut("/api/posts/like", { postId: postId })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       trigger("/api/posts/like");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   return (
     <Layout>
       <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 fixed top-0 w-7/2 lg:w-1/3 p-3 z-20">
@@ -47,10 +41,26 @@ export default function Accueil(props) {
         </div>
       </div>
       <div className="mt-20 md:hidden" />
-      <AddPost />
+      <AddPost posts={posts} />
       <div className="h-3 w-full bg-gray-800 " />
-      <Posts />
+      {/* posts={props.posts} */}
+      <Post posts={posts} />
       <div className="h-2 w-full bg-gray-800 mb-12 md:mb-0 md:h-0" />
     </Layout>
   );
 }
+
+// export async function getServerSideProps(ctx) {
+//   const [userData, postData] = await Promise.all([
+//     myGet("/api/users/feed", ctx).then((response) => response.data),
+//     myGet("/api/posts", ctx).then((response) => response.data),
+//   ]);
+//   return {
+//     props: {
+//       users: userData?.users || null,
+//       posts: postData?.posts || null,
+//     }, // will be passed to the page component as props
+//   };
+// }
+
+export default Accueil;

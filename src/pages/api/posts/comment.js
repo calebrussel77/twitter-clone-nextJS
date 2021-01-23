@@ -1,30 +1,61 @@
 import connectDB from "../../../utils/connectDb";
 import handler from "../../../utils/handler";
+import checkAuth from "../../../utils/checkAuth";
+import cloudinary from "../../../utils/cloudinary-config";
 
 import User from "../../../../models/Users";
 import Post from "../../../../models/Posts";
 
 connectDB;
 
-export default handler.put(async (req, resp, next) => {
-  // ADD OR REMOVE COMMENTS IN POSTS
+export default handler.use(checkAuth).put(async (req, resp, next) => {
+  //  ADD COMMENT TO ONE POST
+  const fileStr = req.body?.image ? req.body?.image : null;
+  let comment = {};
+  const postId = req?.body?.postId;
 
-  const { postId, email, comment } = req.body;
+  console.log(req?.body);
 
-  const authUser = await User.findOne({ email: email });
+  try {
+    const post = await Post.findById(postId);
 
-  const post = await Post.findOne({ _id: postId });
-  const likeIds = post.likes.map((id) => id.toString());
+    if (fileStr) {
+      const imageResponse = await cloudinary?.uploader?.upload(fileStr, {
+        upload_preset: "posts_setup",
+      });
+      comment = {
+        text: req.body?.text ? req.body.text : null,
+        image: imageResponse?.secure_url ? imageResponse?.secure_url : null,
+        postedBy: req?.userData?.id,
+      };
 
-  if (likeIds.includes(authUser._id.toString())) {
-    var index = likeIds.indexOf(authUser._id.toString());
-    if (index > -1) {
-      post.likes.splice(index, 1);
+      post.comments.push(comment);
+
+      const newPost = await post.save();
+      console.log(newPost);
+
+      return resp.status(200).json({ msg: "Votre post a bien été crée !" });
+    } else {
+      comment = {
+        text: req.body?.text ? req.body.text : null,
+        postedBy: req?.userData?.id,
+      };
+
+      post.comments.push(comment);
+
+      await post.save();
+
+      const newPost = await post.save();
+      console.log({ newPost });
+
+      return resp.status(200).json({ msg: "Votre post a bien été crée !" });
     }
-  } else {
-    await post.likes.push(authUser._id.toString());
+  } catch (error) {
+    console.log(error);
+    if (error) {
+      return resp.status(502).json({
+        errorMsg: "Une erreur est survenue veuillez réessayer !",
+      });
+    }
   }
-  await post.save();
-
-  resp.json({ post });
 });

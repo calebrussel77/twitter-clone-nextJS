@@ -8,16 +8,27 @@ connectDB;
 export default handler.use(checkAuth).get((req, resp, next) => {
   // GET THE LIST OF USERS OF SPECIFIQUE FEEDS THAT WE DON'T FOLLOW
 
-  User.findOne({ email: req.userData.email })
+  User.findOne({ _id: req.userData.id })
     .select("-password")
     .then((user) => {
       // adding the id of the current user in the array to avoids have his data
       user.following.push(user._id);
 
-      User.find({ _id: { $nin: following } })
-        .select("_id name image")
+      User.find({ _id: { $nin: user.following } })
+        .select("_id name email about image")
+        .sort({ createdAt: "desc" })
         .then((users) => {
-          resp.json(users);
+          return resp.status(200).json(users);
+        })
+        .catch((err) => {
+          return resp
+            .status(500)
+            .json({ errorMsg: "Une erreur est survenue veuillez réessayer !" });
         });
+    })
+    .catch((err) => {
+      return resp
+        .status(500)
+        .json({ errorMsg: "Une erreur est survenue veuillez réessayer !" });
     });
 });

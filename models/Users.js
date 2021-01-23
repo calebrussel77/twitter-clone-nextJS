@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: "Avatar image is required",
-      default: "/images/profile-image.png",
+      default:
+        "https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png",
     },
     about: {
       type: String,
@@ -43,7 +43,6 @@ userSchema.pre("findOne", function (next) {
   this.populate("followers", "_id name image");
   next();
 });
-
 
 //important to check if the model already exist
 export default mongoose.models.User || mongoose.model("User", userSchema);

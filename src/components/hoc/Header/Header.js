@@ -1,10 +1,12 @@
 import React from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useState } from "react";
-import { signout, useSession } from "next-auth/client";
+import Cookies from "js-cookie";
+import { getAuthenticated } from "../../../utils/authenticated";
 
 const Header = (props) => {
-  const [session, loading] = useSession();
+  const user = getAuthenticated();
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,8 +18,8 @@ const Header = (props) => {
             className="focus:outline-none flex flex-row space-x-3 p-2 items-center bg-brand-700 rounded-md hover:bg-secondary-200 relative"
           >
             <img
-              src={session?.user.image}
-              alt={session?.user.name}
+              src={user?.image}
+              alt={user?.name}
               className="h-8 w-8 rounded-full border border-gray-700 block"
             />
             <svg
@@ -46,15 +48,13 @@ const Header = (props) => {
               >
                 <div className="px-4 py-3 flex flex-row items-center">
                   <img
-                    src={session?.user.image}
-                    alt={session?.user.name}
+                    src={user?.image}
+                    alt={user?.name}
                     className="h-8 w-8 rounded-full border border-gray-700 block"
                   />
                   <div className="flex flex-col items-baseline px-5">
-                    <p className="font-bold">{session?.user.name}</p>
-                    <p className="text-gray-600 text-xs">
-                      {session?.user.email}
-                    </p>
+                    <p className="font-bold">{user?.name}</p>
+                    <p className="text-gray-400 text-xs">{user?.email}</p>
                   </div>
                 </div>
                 <div className="py-1">
@@ -113,7 +113,6 @@ const Header = (props) => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
-                        onClick={signout}
                         className={`${
                           active ? "bg-gray-800" : "text-secondary-700"
                         } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}

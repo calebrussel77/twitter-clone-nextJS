@@ -15,7 +15,12 @@ const postSchema = new mongoose.Schema(
     likes: [{ type: ObjectId, ref: "User" }],
     comments: [
       {
-        text: String,
+        text: {
+          type: String,
+        },
+        image: {
+          type: String,
+        },
         createdAt: { type: Date, default: Date.now },
         postedBy: { type: ObjectId, ref: "User" },
       },
@@ -40,7 +45,7 @@ const postSchema = new mongoose.Schema(
 
 /* We're going to need to populate the 'postedBy' field virtually every time we do a findOne / find query, so we'll just do it as a pre hook here upon creating the schema */
 postSchema.pre("find", function (next) {
-  this.populate("postedBy", "_id name image");
+  this.populate("postedBy", "_id name image email");
   this.populate("comments.postedBy", "_id name image");
   next();
 });

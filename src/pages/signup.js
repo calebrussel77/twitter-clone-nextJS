@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
-
+import { useNotification } from "../store/Notification";
 import { withNotAuthComponent } from "../hoc/withNotAuthComponent";
 import { withAuthServerSideProps } from "../hoc/withAuthServerSide";
 import Axios from "axios";
-import { authenticated } from "../utils/authenticated";
 
-const index = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
+const signup = () => {
+  const [user, setUser] = useState({ name: "", email: "", password: "" });
+  const dispatchNotification = useNotification();
 
   const handleChange = (e) => {
     setUser({
@@ -17,23 +17,21 @@ const index = () => {
     });
   };
 
-  const handleSubmitSingin = (e) => {
+  const handleSubmitRegister = (e) => {
     e.preventDefault();
-    if (!user.email || !user.password) {
+    if (!user.name || !user.password || !user.email) {
       dispatchNotification({
         type: "ERROR",
         msg: "Veuillez Remplir tous les champs",
       });
     } else {
-      Axios.post("/api/signin", user)
+      Axios.post("/api/signup", user)
         .then((response) => {
-          authenticated(response.data?.user, () => {
-            Router.push("/accueil");
-            dispatchNotification({
-              type: "SUCCESS",
-              msg: response.data?.msg,
-            });
+          dispatchNotification({
+            type: "SUCCESS",
+            msg: response.data.msg,
           });
+          Router.push("/");
         })
         .catch((err) => {
           if (err?.response) {
@@ -46,9 +44,10 @@ const index = () => {
       setUser({ ...user, password: "" });
     }
   };
+
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-8 lg:py-24">
-      <div className="flex flex-col max-w-screen-lg overflow-hidden bg-primary-700 border rounded-md shadow-sm lg:flex-row sm:mx-auto">
+      <div className="flex flex-col max-w-screen-lg overflow-hidden bg-secondary-700 border rounded-md shadow-sm lg:flex-row sm:mx-auto">
         <div className="relative lg:w-1/2">
           <div>
             <img
@@ -57,10 +56,10 @@ const index = () => {
               className="object-cover w-full lg:absolute h-80 lg:h-full"
             />
 
-            <div className="absolute inset-0 bg-primary-700 opacity-25" />
+            <div className="absolute inset-0 bg-primary-700 opacity-50" />
           </div>
           <svg
-            className="absolute top-0 right-0 hidden h-full text-primary-700 lg:inline-block"
+            className="absolute top-0 right-0 hidden h-full text-secondary-700 lg:inline-block"
             viewBox="0 0 20 104"
             fill="currentColor"
           >
@@ -68,7 +67,7 @@ const index = () => {
           </svg>
         </div>
 
-        <div className="flex flex-col justify-center p-8 bg-primary-700 lg:p-16 lg:pl-10 lg:w-1/2">
+        <div className="flex flex-col justify-center p-8 bg-secondary-700 lg:p-16 lg:pl-10 lg:w-1/2">
           <div>
             <p className="flex items-center space-x-3 px-3 mb-4 text-sm font-bold tracking-wider text-white uppercase">
               <svg className="fill-current h-8 w-8" viewBox="0 0 512 512">
@@ -82,24 +81,34 @@ const index = () => {
             </p>
           </div>
           <h5 className="mb-3 text-3xl font-extrabold leading-none sm:text-4xl">
-            Se Connecter
+            Créer votre compte sur twitter clone
           </h5>
           <form
-            onSubmit={handleSubmitSingin}
+            onSubmit={handleSubmitRegister}
             autoComplete="off"
             className="text-secondary-200 mt-4"
           >
+            <input
+              type="text"
+              name="name"
+              placeholder="Nom d'utilisateur"
+              onChange={handleChange}
+              value={user.name}
+              className="bg-gray-200 p-2 w-full mb-2 rounded-md mt-2 border focus:outline-none focus:border-secondary-700"
+            />
             <input
               type="email"
               name="email"
               placeholder="Adresse email"
               onChange={handleChange}
+              value={user.email}
               className="bg-gray-200 p-2 w-full mb-2 rounded-md mt-2 border focus:outline-none focus:border-secondary-700"
             />
             <input
               type="password"
               name="password"
               onChange={handleChange}
+              value={user.password}
               label="Mot de passe"
               placeholder="Votre Mot de passe"
               className="bg-gray-200 p-2 w-full rounded-md mt-2 border focus:outline-none focus:border-secondary-700"
@@ -107,17 +116,17 @@ const index = () => {
             <div className="text-center mt-6">
               <button
                 type="submit"
-                className="bg-secondary-700 hover:bg-primary-200 text-white font-bold px-3 py-2 rounded-md inline-block shadow-md"
+                className="bg-secondary-200 hover:bg-primary-700 text-white font-bold px-3 py-2 rounded-md inline-block shadow-md"
               >
-                Connectez-vous
+                Créer son compte
               </button>
             </div>
           </form>
           <p className="text-sm font-semibold text-right mt-10 text-white">
-            Pas encore membre ?
-            <Link href="/signup">
-              <a className="text-secondary-700 hover:underline cursor-pointer pl-2">
-                Créer votre compte
+            Déjà membre ?
+            <Link href="/">
+              <a className="text-secondary-200 hover:underline cursor-pointer pl-2">
+                connectez-vous
               </a>
             </Link>
           </p>
@@ -127,5 +136,5 @@ const index = () => {
   );
 };
 
-export default withNotAuthComponent(index);
+export default withNotAuthComponent(signup);
 export const getServerSideProps = withAuthServerSideProps();
