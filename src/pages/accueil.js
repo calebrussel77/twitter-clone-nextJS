@@ -27,7 +27,7 @@ function Accueil() {
   // };
   return (
     <Layout>
-      <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 fixed top-0 w-7/2 lg:w-1/3 p-3 z-20">
+      <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 w-full p-3">
         <div className="flex items-center justify-between flex-row">
           <h2 className="font-extrabold text-xl">Accueil</h2>
           <svg

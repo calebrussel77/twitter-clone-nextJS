@@ -38,7 +38,6 @@ const Footer = (props) => {
               </span>
             </a>
           </ActiveLink>
-
           {/*second icon */}
           <ActiveLink href="/explore" activeClassName="text-secondary-700">
             <a className="group hover:bg-secondary-200 hover:text-secondary-700 flex space-x-3 p-2 rounded-md">
@@ -54,7 +53,6 @@ const Footer = (props) => {
               </span>
             </a>
           </ActiveLink>
-
           {/*second icon */}
           <ActiveLink href="/notification" activeClassName="text-secondary-700">
             <a className="group hover:bg-secondary-200 hover:text-secondary-700 flex space-x-3 p-2 rounded-md">
@@ -70,7 +68,6 @@ const Footer = (props) => {
               </span>
             </a>
           </ActiveLink>
-
           {/*second icon */}
           <ActiveLink href="/message" activeClassName="text-secondary-700">
             <a className="group hover:bg-secondary-200 hover:text-secondary-700 flex space-x-3 p-2 rounded-md">
@@ -86,7 +83,6 @@ const Footer = (props) => {
               </span>
             </a>
           </ActiveLink>
-
           <ActiveLink href="/signet" activeClassName="text-secondary-700">
             <a className="group hidden hover:bg-secondary-200 hover:text-secondary-700 md:flex space-x-3 p-2 rounded-md">
               <svg
@@ -106,7 +102,6 @@ const Footer = (props) => {
               <span className="hidden lg:block text-lg font-bold">Signets</span>
             </a>
           </ActiveLink>
-
           <ActiveLink href="/list" activeClassName="text-secondary-700">
             <a className="group hidden hover:bg-secondary-200 hover:text-secondary-700 md:flex space-x-3 p-2 rounded-md">
               <svg
@@ -120,7 +115,6 @@ const Footer = (props) => {
               <span className="hidden lg:block text-lg font-bold">Listes</span>
             </a>
           </ActiveLink>
-
           <ActiveLink href="/profil" activeClassName="text-secondary-700">
             <a className="group hidden hover:bg-secondary-200 hover:text-secondary-700 md:flex space-x-3 p-2 rounded-md">
               <svg
@@ -132,7 +126,6 @@ const Footer = (props) => {
               <span className="hidden lg:block text-lg font-bold">Profil</span>
             </a>
           </ActiveLink>
-
           <ActiveLink href="/more" activeClassName="text-secondary-700">
             <a
               activeClassName="text-secondary-700"
