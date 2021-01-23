@@ -3,8 +3,9 @@ import { useState } from "react";
 import { axiosInstancePut } from "../../utils/axiosInstancePut";
 import { useNotification } from "../../store/Notification";
 import { getAuthenticated } from "../../utils/authenticated";
+import moment from "moment";
 
-const AddTweetComment = ({ postSelected }) => {
+const AddTweetComment = ({ posts, postSelected }) => {
   const user = getAuthenticated();
   const [isLoading, setIsLoading] = useState(false);
   const [fileInput, setFileInput] = useState("");
@@ -32,6 +33,23 @@ const AddTweetComment = ({ postSelected }) => {
     setIsLoading(true);
 
     if (previewSource2 || text) {
+      mutate(
+        "/api/posts",
+        [
+          ...posts,
+          {
+            ...postSelected,
+            comments: [
+              ...postSelected?.comments,
+              {
+                text,
+                image: previewSource2,
+              },
+            ],
+          },
+        ],
+        false
+      );
       axiosInstancePut("/api/posts/comment", {
         text,
         image: previewSource2,
@@ -39,16 +57,18 @@ const AddTweetComment = ({ postSelected }) => {
       })
         .then((response) => {
           setIsLoading(false);
-          setPreviewSource("");
+          setPreviewSource2("");
           setText("");
-          return dispatchNotification({
+          dispatchNotification({
             type: "SUCCESS",
             msg: response.data?.msg,
           });
+          trigger("/api/posts");
         })
         .catch((err) => {
+          console.log(err);
           setIsLoading(false);
-          return dispatchNotification({
+          dispatchNotification({
             type: "ERROR",
             msg: err.response?.data.errorMsg,
           });
@@ -72,16 +92,41 @@ const AddTweetComment = ({ postSelected }) => {
       }}
     >
       <div className="bg-primary-700 px-2 sm:px-6 py-8 shadow-lg rounded-md post-width sm:mx-2">
-        <div>
-          <img
-            src={postSelected?.postedBy?.image}
-            alt={postSelected?.postedBy?.name}
-            className="h-10 w-10 md:h-16 md:w-16 rounded-full border border-gray-700 bg-gray-300"
-          />
-          <p className="text-sm pt-1">{postSelected?.text}</p>
+        <div className="relative pb-12">
+          <div className="flex flex-row space-x-3 items-start">
+            <div className="relative z-30 overflow-hidden">
+              <img
+                src={postSelected?.postedBy?.image}
+                alt={postSelected?.postedBy?.name}
+                className="h-10 w-10 md:h-16 md:w-16 rounded-full border border-gray-700 bg-gray-300"
+              />
+            </div>
+
+            <div className="w-full">
+              <div className="flex flex-col items-start mb-2 ">
+                <div className="flex flex-row items-center text-white">
+                  <h2 className="text-sm font-bold truncate leading-snug">
+                    {postSelected?.postedBy?.name}
+                  </h2>
+                  <p className="text-xs text-gray-500">
+                    <span className="mx-1">&middot;</span>
+                    {moment(postSelected?.createdAt)
+                      .locale("fr")
+                      .startOf("hour")
+                      .fromNow()}
+                  </p>
+                </div>
+                <p className="text-xs text-gray-400">
+                  {postSelected?.postedBy?.email}
+                </p>
+              </div>
+              <p className="text-sm text-white">{postSelected?.text}</p>
+            </div>
+          </div>
+          <div className="absolute bottom-0 h-full border-l border-gray-600 ml-6" />
         </div>
-        <div className="h-20 border-l border-gray-600 mr-auto" />
-        <div className="inline-flex flex-row space-x-3 w-full">
+
+        <div className="relative inline-flex flex-row space-x-3 w-full">
           <img
             src={user?.image}
             alt={user?.name}
@@ -167,7 +212,7 @@ const AddTweetComment = ({ postSelected }) => {
                         <span className="text-white">patientez...</span>
                       </span>
                     ) : (
-                      <span>Enrégistrer</span>
+                      <span>Repondre</span>
                     )}
                   </button>
                 </span>

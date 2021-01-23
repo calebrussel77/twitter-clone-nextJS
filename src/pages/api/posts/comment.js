@@ -31,12 +31,20 @@ export default handler.use(checkAuth).put(async (req, resp, next) => {
 
       post.comments.push(comment);
 
-      const newPost = await post.save();
-      console.log(newPost);
+      await post
+        .save()
+        .then((data) => {
+          return resp
+            .status(200)
+            .json({ msg: "Votre commentaire au tweet bien été ajouté !" });
+        })
+        .catch((error) => {
+          console.log(error);
 
-      return resp
-        .status(200)
-        .json({ msg: "Votre commentaire au tweet bien été ajouté !" });
+          return resp.status(502).json({
+            errorMsg: "Une erreur est survenue veuillez réessayer !",
+          });
+        });
     } else {
       comment = {
         text: req.body?.text ? req.body.text : null,
@@ -45,17 +53,22 @@ export default handler.use(checkAuth).put(async (req, resp, next) => {
 
       post.comments.push(comment);
 
-      await post.save();
+      await post
+        .save()
+        .then((data) => {
+          return resp
+            .status(200)
+            .json({ msg: "Votre commentaire au tweet bien été ajouté !" });
+        })
+        .catch((error) => {
+          console.log(error);
 
-      const newPost = await post.save();
-      console.log({ newPost });
-
-      return resp
-        .status(200)
-        .json({ msg: "Votre commentaire au tweet bien été ajouté !" });
+          return resp.status(502).json({
+            errorMsg: "Une erreur est survenue veuillez réessayer !",
+          });
+        });
     }
   } catch (error) {
-    console.log(error);
     if (error) {
       return resp.status(502).json({
         errorMsg: "Une erreur est survenue veuillez réessayer !",

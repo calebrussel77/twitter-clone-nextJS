@@ -163,7 +163,7 @@ const Post = ({ posts }) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <AddTweetComment postSelected={selectedPost} />
+                  <AddTweetComment posts={posts} postSelected={selectedPost} />
                   <div
                     onClick={() => {
                       setCommentModal(false);
