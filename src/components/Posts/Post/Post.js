@@ -13,6 +13,7 @@ import { postcssPlugin } from "autoprefixer";
 const Post = ({ posts }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   const userId = Cookies?.get("id");
 
@@ -134,7 +135,10 @@ const Post = ({ posts }) => {
               <div className="flex items-baseline justify-between flex-row pt-5 mx-auto sm:w-2/3">
                 {/* Comments */}
                 <div
-                  onClick={() => setCommentModal(true)}
+                  onClick={() => {
+                    setCommentModal(true);
+                    setSelectedPost(post);
+                  }}
                   className="cursor-pointer"
                 >
                   <div className="group hover:text-secondary-700  flex flex-row space-x-2 items-center">
@@ -159,7 +163,7 @@ const Post = ({ posts }) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <AddTweetComment post={post} />
+                  <AddTweetComment postSelected={selectedPost} />
                   <div
                     onClick={() => {
                       setCommentModal(false);
@@ -175,10 +179,10 @@ const Post = ({ posts }) => {
 
                 {/* Retweet */}
                 <div className="cursor-pointer">
-                  <a className="flex flex-row space-x-2 items-center">
+                  <a className="group hover:text-green-500 flex flex-row space-x-2 items-center">
                     <svg
                       viewBox="0 0 24 24"
-                      className="group hover:text-green-500 fill-current stroke-current text-gray-400 h-5 w-5"
+                      className=" group-hover:text-green-500 fill-current stroke-current text-gray-400 h-5 w-5"
                     >
                       <path d="M23.77 15.67a.749.749 0 00-1.06 0l-2.22 2.22V7.65a3.755 3.755 0 00-3.75-3.75h-5.85a.75.75 0 000 1.5h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22a.749.749 0 10-1.06 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5a.747.747 0 000-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22a.752.752 0 001.062 0 .749.749 0 000-1.06l-3.5-3.5a.747.747 0 00-1.06 0l-3.5 3.5a.749.749 0 101.06 1.06l2.22-2.22V16.7a3.755 3.755 0 003.75 3.75h5.85a.75.75 0 000-1.5z" />
                     </svg>

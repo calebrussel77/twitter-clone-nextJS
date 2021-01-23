@@ -34,7 +34,9 @@ export default handler.use(checkAuth).put(async (req, resp, next) => {
       const newPost = await post.save();
       console.log(newPost);
 
-      return resp.status(200).json({ msg: "Votre post a bien été crée !" });
+      return resp
+        .status(200)
+        .json({ msg: "Votre commentaire au tweet bien été ajouté !" });
     } else {
       comment = {
         text: req.body?.text ? req.body.text : null,
@@ -48,7 +50,9 @@ export default handler.use(checkAuth).put(async (req, resp, next) => {
       const newPost = await post.save();
       console.log({ newPost });
 
-      return resp.status(200).json({ msg: "Votre post a bien été crée !" });
+      return resp
+        .status(200)
+        .json({ msg: "Votre commentaire au tweet bien été ajouté !" });
     }
   } catch (error) {
     console.log(error);
