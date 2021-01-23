@@ -7,7 +7,7 @@ module.exports = {
     defaultLineHeights: true,
     standardFontWeights: true,
   },
-  purge: ["./pages/**/*.js", "./components/**/*.jsx"],
+  purge: ["./src/pages/**/*.js", "./src/components/**/*.jsx"],
   theme: {
     screens: {
       sm: "640px",
