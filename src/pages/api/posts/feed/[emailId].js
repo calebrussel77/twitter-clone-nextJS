@@ -1,7 +1,6 @@
 import connectDB from "../../../../utils/connectDb";
 import handler from "../../../../utils/handler";
 import checkAuth from "../../../../utils/checkAuth";
-import { getSession } from "next-auth/client";
 import Post from "../../../../../models/Posts";
 
 import User from "../../../../../models/Users";
