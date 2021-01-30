@@ -2,15 +2,17 @@ import connectDB from "../../../utils/connectDb";
 import handler from "../../../utils/handler";
 
 import User from "../../../../models/Users";
+import checkAuth from "../../../utils/checkAuth";
 
 connectDB;
 
 export default handler
+  .use(checkAuth)
   .use((req, resp, next) => {
     // ADD FOLLOWING PERSON INTO THE USER AUTHENTICATED
     User.findOneAndUpdate(
-      { _id: req.body.userAuthenticated },
-      { $push: { following: req.body.followId } },
+      { _id: req.userData?.id },
+      { $push: { following: req.body.userId } },
       { new: true }
     )
       .then()
@@ -21,14 +23,17 @@ export default handler
     // ADD FOLLOWER PERSON INTO THE USER WE ARE FOLLOWING
 
     User.findOneAndUpdate(
-      { _id: req.body.followId },
-      { $push: { followers: req.body.userAuthenticated } },
+      { _id: req.body?.userId },
+      { $push: { followers: req.userData?.id } },
       { new: true }
     )
-      .then((data) => {
-        return resp.json({ data, message: "the user have you like followers" });
+      .then((user) => {
+        return resp.json({ user, msg: `Vous suivez desormais ${user.name}` });
       })
       .catch((err) => {
-        return resp.json({ error: "error to get all posts ! " + err.message });
+        console.log(error);
+        return resp.status(502).json({
+          errorMsg: "Une erreur est survenue veuillez réessayer !",
+        });
       });
   });

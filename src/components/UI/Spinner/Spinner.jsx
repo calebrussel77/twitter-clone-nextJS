@@ -1,8 +1,8 @@
 const Spinner = () => {
   return (
-    <div className="flex flex-row items-center space-x-4 justify-center text-gray-600 mt-6">
+    <div className="flex flex-row items-center space-x-4 justify-center text-secondary-700 mt-6">
       <svg
-        class="animate-spin -ml-1 mr-3 h-8 w-8 text-brand-600"
+        class="animate-spin -ml-1 mr-3 h-8 w-8 text-secondary-700"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

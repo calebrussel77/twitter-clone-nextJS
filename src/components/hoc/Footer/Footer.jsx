@@ -209,7 +209,7 @@ const Footer = (props) => {
                       <a
                         href="#account-settings"
                         className={`${
-                          active ? "bg-gray-800 text-gray-500" : "text-gray-700"
+                          active ? "bg-gray-800 text-gray-400" : "text-gray-500"
                         } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
                       >
                         Paramètre du compte
@@ -221,7 +221,7 @@ const Footer = (props) => {
                       <a
                         href="#new-account"
                         className={`${
-                          active ? "bg-gray-800 text-gray-500" : "text-gray-700"
+                          active ? "bg-gray-800 text-gray-400" : "text-gray-500"
                         } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
                       >
                         Ajouter un compte existant
@@ -231,7 +231,7 @@ const Footer = (props) => {
                   <Menu.Item
                     as="span"
                     disabled
-                    className="flex justify-between w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50"
+                    className="flex justify-between w-full px-4 py-2 text-sm leading-5 text-left text-gray-600 cursor-not-allowed opacity-50"
                   >
                     Signaler (soon)
                   </Menu.Item>
@@ -240,7 +240,7 @@ const Footer = (props) => {
                       <a
                         href="#license"
                         className={`${
-                          active ? "bg-gray-800 text-gray-500" : "text-gray-700"
+                          active ? "bg-gray-800 text-gray-400" : "text-gray-500"
                         } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
                       >
                         License

@@ -5,7 +5,7 @@ import Header from "./Header/Header";
 import NotFound from "../UI/NotFound/NotFound";
 import useSWR from "swr";
 
-const Layout = (props) => {
+const TweetLayout = (props) => {
   const { data: usersSuggestions, error } = useSWR(`/api/users/feed`);
 
   return (
@@ -38,7 +38,10 @@ const Layout = (props) => {
               usersSuggestions.map((userSuggestion) => {
                 return (
                   <div key={userSuggestion._id} className="w-full mb-4">
-                    <Suggestion userSuggestion={userSuggestion} />
+                    <Suggestion
+                      userSuggestion={userSuggestion}
+                      usersSuggestions={usersSuggestions}
+                    />
                   </div>
                 );
               })
@@ -57,4 +60,4 @@ const Layout = (props) => {
   );
 };
 
-export default Layout;
+export default TweetLayout;

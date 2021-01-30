@@ -1,32 +1,13 @@
 import AddPost from "../components/Posts/AddPost/AddPost";
 import Post from "../components/Posts/Post/Post";
-import Layout from "../components/hoc/Layout";
+import TweetLayout from "../components/hoc/TweetLayout";
 import useSWR from "swr";
-// import { useRouter } from "next/router";
 
-function Accueil() {
+export default function Accueil() {
   const { data: posts, error } = useSWR(`/api/posts`);
 
-  // const handleLikes = (postId) => {
-  //   mutate(
-  //     "/api/posts/like",
-  //     {
-  //       ...post,
-  //       likes: post.likes?.filter((b) => b !== userId),
-  //     },
-  //     false
-  //   );
-  //   axiosInstancePut("/api/posts/like", { postId: postId })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       trigger("/api/posts/like");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
   return (
-    <Layout>
+    <>
       <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 w-full p-3">
         <div className="flex items-center justify-between flex-row">
           <h2 className="font-extrabold text-xl">Accueil</h2>
@@ -46,21 +27,8 @@ function Accueil() {
       {/* posts={props.posts} */}
       <Post posts={posts} />
       <div className="h-2 w-full bg-gray-800 mb-12 md:mb-0 md:h-0" />
-    </Layout>
+    </>
   );
 }
 
-// export async function getServerSideProps(ctx) {
-//   const [userData, postData] = await Promise.all([
-//     myGet("/api/users/feed", ctx).then((response) => response.data),
-//     myGet("/api/posts", ctx).then((response) => response.data),
-//   ]);
-//   return {
-//     props: {
-//       users: userData?.users || null,
-//       posts: postData?.posts || null,
-//     }, // will be passed to the page component as props
-//   };
-// }
-
-export default Accueil;
+Accueil.Layout = TweetLayout;
