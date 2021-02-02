@@ -9,59 +9,25 @@ const Suggestion = ({ userSuggestion, usersSuggestions }) => {
   const dispatchNotification = useNotification();
 
   const handleFollow = () => {
-    const isFollow = userSuggestion?.followers?.includes(userId);
-
-    console.log(userSuggestion);
-
-    console.log(usersSuggestions);
-
-    if (isFollow) {
-      mutate(
-        "/api/users/unfollow",
-        [
-          ...usersSuggestions,
-          {
-            ...userSuggestion,
-            followers: userSuggestion?.followers.filter((b) => b !== userId),
-          },
-        ],
-        false
-      );
-      axiosInstancePut("/api/users/unfollow", { userId: userSuggestion._id })
-        .then((response) => {
-          dispatchNotification({
-            type: "SUCCESS",
-            msg: response.data?.msg,
-          });
-          trigger("/api/users/feed");
-        })
-        .catch((err) => {
-          console.log(err);
+    mutate(
+      "/api/users/feed",
+      [
+        ...usersSuggestions,
+        usersSuggestions?.filter((b) => b._id !== userSuggestion._id),
+      ],
+      false
+    );
+    axiosInstancePut("/api/users/follow", { userId: userSuggestion?._id })
+      .then((response) => {
+        dispatchNotification({
+          type: "SUCCESS",
+          msg: response.data?.msg,
         });
-    } else {
-      mutate(
-        "/api/users/feed",
-        [
-          ...usersSuggestions,
-          {
-            ...userSuggestion,
-            followers: [...userSuggestion?.followers, userId],
-          },
-        ],
-        false
-      );
-      axiosInstancePut("/api/users/follow", { userId: userSuggestion?._id })
-        .then((response) => {
-          dispatchNotification({
-            type: "SUCCESS",
-            msg: response.data?.msg,
-          });
-          trigger("/api/users/feed");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+        trigger("/api/users/feed");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>

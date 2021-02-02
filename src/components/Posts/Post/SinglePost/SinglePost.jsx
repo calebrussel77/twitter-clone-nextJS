@@ -188,7 +188,7 @@ const SinglePost = ({ post, posts }) => {
             setCommentModal(true);
             setSelectedPost(post);
           }}
-          className="cursor-pointer"
+          className="relative z-30 cursor-pointer"
         >
           <div className="group hover:text-secondary-700  flex flex-row space-x-2 items-center">
             <svg

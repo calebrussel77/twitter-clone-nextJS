@@ -123,7 +123,7 @@ const PostSingle = () => {
 
   return (
     <div>
-      <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 w-full p-3">
+      <div className="bg-primary-700 border-b border-gray-700 w-full p-3">
         <div className="flex items-center space-x-8 flex-row">
           <div onClick={() => router.back()} className="cursor-pointer">
             <svg

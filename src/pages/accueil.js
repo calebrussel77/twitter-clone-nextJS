@@ -8,7 +8,7 @@ export default function Accueil() {
 
   return (
     <>
-      <div className="mdl:block hidden bg-primary-700 border-b border-gray-700 w-full p-3">
+      <div className="bg-primary-700 border-b border-gray-700 w-full p-3 mb-6">
         <div className="flex items-center justify-between flex-row">
           <h2 className="font-extrabold text-xl">Accueil</h2>
           <svg
@@ -21,7 +21,6 @@ export default function Accueil() {
           </svg>
         </div>
       </div>
-      <div className="mt-20 md:hidden" />
       <AddPost posts={posts} />
       <div className="h-3 w-full bg-gray-800 " />
       {/* posts={props.posts} */}

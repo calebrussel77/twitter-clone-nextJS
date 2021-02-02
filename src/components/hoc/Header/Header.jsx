@@ -10,7 +10,7 @@ const Header = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed z-20 left-0 right-0 bg-primary-700 mdl:hidden border-b p-3 border-gray-700 flex flex-row justify-between items-center mdl:border-r">
+    <nav className="fixed z-40 left-0 right-0 bg-primary-700 mdl:hidden border-b p-3 border-gray-700 flex flex-row justify-between items-center mdl:border-r">
       <div className="inline-flex flex-row space-x-4 items-center md:ml-32">
         <Menu>
           <button

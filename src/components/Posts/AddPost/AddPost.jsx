@@ -79,7 +79,7 @@ const AddPost = ({ posts }) => {
   return (
     <>
       <div id="addPost" className="p-3">
-        <div className="bg-primary-700 md:flex items-start flex-row space-x-3 mt-2 md:mt-20 w-full ">
+        <div className="bg-primary-700 md:flex items-start flex-row space-x-3 mt-2 w-full ">
           <img
             src={user?.image}
             alt={user?.name}
