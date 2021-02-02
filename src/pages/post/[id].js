@@ -14,15 +14,15 @@ import Comment from "../../components/Comment/Comment";
 
 const PostSingle = () => {
   const router = useRouter();
-  const userId = Cookies?.get("id");
+  const { data: posts } = useSWR(`/api/posts`);
+  const { data: post, error } = useSWR(id ? `/api/posts/${id}` : null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const id = router?.query?.id;
 
-  const { data: posts } = useSWR(`/api/posts`);
-  const { data: post, error } = useSWR(id ? `/api/posts/${id}` : null);
+  const userId = Cookies?.get("id");
 
   const handleLikes = (post) => {
     const isPostLiked = post?.likes?.includes(userId);
@@ -41,6 +41,7 @@ const PostSingle = () => {
       );
       axiosInstancePut("/api/posts/like", { postId: post?._id })
         .then((response) => {
+          console.log(response.data);
           trigger("/api/posts");
         })
         .catch((err) => {
@@ -60,6 +61,7 @@ const PostSingle = () => {
       );
       axiosInstancePut("/api/posts/like", { postId: post?._id })
         .then((response) => {
+          console.log(response.data);
           trigger("/api/posts");
         })
         .catch((err) => {
@@ -85,9 +87,12 @@ const PostSingle = () => {
       );
       axiosInstancePut("/api/posts/retweet", { postId: post?._id })
         .then((response) => {
+          console.log(response.data);
           trigger("/api/posts");
         })
-        .catch((err) => {});
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       mutate(
         "/api/posts",
@@ -102,10 +107,17 @@ const PostSingle = () => {
       );
       axiosInstancePut("/api/posts/retweet", { postId: post?._id })
         .then((response) => {
+          console.log(response.data);
           trigger("/api/posts");
         })
-        .catch((err) => {});
+        .catch((err) => {
+          console.log(err);
+        });
     }
+  };
+
+  const handleShare = (post) => {
+    console.log("salut");
   };
 
   return (

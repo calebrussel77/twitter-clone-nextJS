@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
+import Axios from "axios";
 
 import { withNotAuthComponent } from "../hoc/withNotAuthComponent";
 import { withAuthServerSideProps } from "../hoc/withAuthServerSide";
-import Axios from "axios";
 import { authenticated } from "../utils/authenticated";
+import { useNotification } from "../store/Notification";
 
 const index = () => {
   const [user, setUser] = useState({ email: "", password: "" });
+  const dispatchNotification = useNotification();
 
   const handleChange = (e) => {
     setUser({

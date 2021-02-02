@@ -39,8 +39,8 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("findOne", function (next) {
-  this.populate("following", "_id name image");
-  this.populate("followers", "_id name image");
+  this.populate("following");
+  this.populate("followers");
   next();
 });
 

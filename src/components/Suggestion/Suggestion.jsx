@@ -1,16 +1,20 @@
 import Cookies from "js-cookie";
-import { mutate, trigger } from "swr";
+import useSWR, { mutate, trigger } from "swr";
 import { useNotification } from "../../store/Notification";
 import { axiosInstancePut } from "../../utils/axiosInstancePut";
 
 const Suggestion = ({ userSuggestion, usersSuggestions }) => {
   const userId = Cookies?.get("id");
+  // const { data: usersSuggestions, error } = useSWR(`/api/users/feed`);
+
   const dispatchNotification = useNotification();
 
   const handleFollow = () => {
     const isFollow = userSuggestion?.following?.includes(userId);
 
-    console.log({ usersSuggestions });
+    console.log(userSuggestion);
+
+    // console.log([...usersSuggestions]);
 
     if (isFollow) {
       mutate(
