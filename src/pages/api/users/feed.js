@@ -15,7 +15,7 @@ export default handler.use(checkAuth).get((req, resp, next) => {
       user.following.push(user._id);
 
       User.find({ _id: { $nin: user.following } })
-        .select("_id name email about image")
+        .select("-password")
         .sort({ createdAt: "desc" })
         .then((users) => {
           return resp.status(200).json(users);

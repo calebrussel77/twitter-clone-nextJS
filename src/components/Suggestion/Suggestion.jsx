@@ -5,16 +5,15 @@ import { axiosInstancePut } from "../../utils/axiosInstancePut";
 
 const Suggestion = ({ userSuggestion, usersSuggestions }) => {
   const userId = Cookies?.get("id");
-  // const { data: usersSuggestions, error } = useSWR(`/api/users/feed`);
 
   const dispatchNotification = useNotification();
 
   const handleFollow = () => {
-    const isFollow = userSuggestion?.following?.includes(userId);
+    const isFollow = userSuggestion?.followers?.includes(userId);
 
     console.log(userSuggestion);
 
-    // console.log([...usersSuggestions]);
+    console.log(usersSuggestions);
 
     if (isFollow) {
       mutate(
@@ -23,12 +22,12 @@ const Suggestion = ({ userSuggestion, usersSuggestions }) => {
           ...usersSuggestions,
           {
             ...userSuggestion,
-            following: userSuggestion?.following.filter((b) => b !== userId),
+            followers: userSuggestion?.followers.filter((b) => b !== userId),
           },
         ],
         false
       );
-      axiosInstancePut("/api/users/unfollow", { userId: userId })
+      axiosInstancePut("/api/users/unfollow", { userId: userSuggestion._id })
         .then((response) => {
           dispatchNotification({
             type: "SUCCESS",
@@ -46,12 +45,12 @@ const Suggestion = ({ userSuggestion, usersSuggestions }) => {
           ...usersSuggestions,
           {
             ...userSuggestion,
-            following: [...userSuggestion?.following, userId],
+            followers: [...userSuggestion?.followers, userId],
           },
         ],
         false
       );
-      axiosInstancePut("/api/users/follow", { userId: userId })
+      axiosInstancePut("/api/users/follow", { userId: userSuggestion?._id })
         .then((response) => {
           dispatchNotification({
             type: "SUCCESS",
@@ -82,12 +81,12 @@ const Suggestion = ({ userSuggestion, usersSuggestions }) => {
               onClick={handleFollow}
               className={`foucus:outline-none border-secondary-700 border px-2 text-sm py-1 rounded-l-full rounded-r-full hover:bg-purple-600 group-hover:text-white ease-in-out transition duration-150
             ${
-              userSuggestion?.following?.includes(userId)
+              userSuggestion?.followers?.includes(userId)
                 ? "bg-secondary-700 text-white"
                 : "text-secondary-700"
             }`}
             >
-              {userSuggestion?.following?.includes(userId)
+              {userSuggestion?.followers?.includes(userId)
                 ? "Abonné"
                 : "Suivre"}
             </button>

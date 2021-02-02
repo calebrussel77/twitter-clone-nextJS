@@ -13,16 +13,17 @@ import { axiosInstancePut } from "../../utils/axiosInstancePut";
 import Comment from "../../components/Comment/Comment";
 
 const PostSingle = () => {
+  const userId = Cookies?.get("id");
+
   const router = useRouter();
+  const id = router?.query?.id;
+
   const { data: posts } = useSWR(`/api/posts`);
   const { data: post, error } = useSWR(id ? `/api/posts/${id}` : null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-  const id = router?.query?.id;
-
-  const userId = Cookies?.get("id");
 
   const handleLikes = (post) => {
     const isPostLiked = post?.likes?.includes(userId);
@@ -163,7 +164,7 @@ const PostSingle = () => {
                 <div className="flex flex-row space-x-3 items-start">
                   <img
                     src={post?.postedBy?.image}
-                    alt={post?.postedBy?.image}
+                    alt={post?.postedBy?.name}
                     className="h-12 w-12 rounded-full border border-gray-700 object-cover object-center"
                   />
                   <div className="w-full">

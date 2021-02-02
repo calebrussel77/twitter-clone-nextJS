@@ -134,7 +134,7 @@ const SinglePost = ({ post, posts }) => {
         <div className="flex flex-row space-x-3 items-start">
           <img
             src={post?.postedBy?.image}
-            alt={post?.postedBy?.image}
+            alt={post?.postedBy?.name}
             className="h-12 w-12 rounded-full border border-gray-700 object-cover object-center"
           />
           <div className="w-full">
